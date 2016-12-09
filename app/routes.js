@@ -18,6 +18,12 @@ module.exports = function(app, passport) {
     });
   });
 
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/profile',
+    failureRedirect: '/signup',
+    failureFlash: true
+  }));
+
   // PROFILE
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
