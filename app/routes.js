@@ -33,9 +33,19 @@ module.exports = function(app, passport) {
   // PROFILE
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
-      user : req.user
+      user: req.user
     });
   });
+
+  // FACEBOOK
+  app.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: 'email'
+  }));
+
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
 
   // LOG OUT
   app.get('/logout', function(req, res) {
