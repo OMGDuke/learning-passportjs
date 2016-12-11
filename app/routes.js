@@ -47,6 +47,14 @@ module.exports = function(app, passport) {
     failureRedirect: '/'
   }));
 
+  // TWITTER
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
+
   // LOG OUT
   app.get('/logout', function(req, res) {
     req.logout();
