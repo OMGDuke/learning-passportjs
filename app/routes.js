@@ -65,6 +65,14 @@ module.exports = function(app, passport) {
     failureRedirect: '/'
   }));
 
+  // TWITCH
+  app.get('/auth/twitch', passport.authenticate('twitch'));
+
+  app.get('/auth/twitch/callback', passport.authenticate('twitch', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
+
   // LOG OUT
   app.get('/logout', function(req, res) {
     req.logout();

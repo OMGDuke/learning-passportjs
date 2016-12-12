@@ -2,6 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var TwitchStrategy = require('passport-twitch').Strategy;
 
 var User = require('../app/models/user');
 var configAuth = require('./auth');
@@ -158,6 +159,42 @@ module.exports = function(passport) {
           newUser.google.token = token;
           newUser.google.name = profile.displayName;
           newUser.google.email = profile.emails[0].value;
+
+          newUser.save(function(err) {
+            if(err) {
+              throw err;
+            }
+            return done(null, newUser);
+          });
+        }
+      });
+    });
+  }));
+
+  // TWITCH
+  passport.use(new TwitchStrategy({
+    clientID: configAuth.twitchAuth.clientID,
+    clientSecret: configAuth.twitchAuth.clientSecret,
+    callbackURL: configAuth.twitchAuth.callbackURL,
+    scope: "user_read"
+  }, function(accessToken, refreshToken, profile, done) {
+    console.log("ACCESS TOKEN: " + accessToken);
+    console.log("REFRESH TOKEN: " + refreshToken);
+    console.log("PROFILE: " + profile);
+    process.nextTick(function() {
+      User.findOne({
+        'twitch.id': profile.id
+      }, function(err, user) {
+        if(err) {
+          return done(err);
+        } else if (user) {
+          return done(null, user);
+        } else {
+          var newUser = new User;
+          newUser.twitch.id = profile.id;
+          newUser.twitch.token = token;
+          newUser.twitch.name = profile.displayName;
+          newUser.twitch.email = profile.emails[0].value;
 
           newUser.save(function(err) {
             if(err) {

@@ -15,5 +15,11 @@ module.exports = {
     'clientID': process.env.GOOGLE_ID,
     'clientSecret': process.env.GOOGLE_SECRET,
     'callbackURL': 'http://localhost:8080/auth/google/callback'
+  },
+
+  'twitchAuth': {
+    'clientID': process.env.TWITCH_ID,
+    'clientSecret': process.env.TWITCH_SECRET,
+    'callbackURL': 'http://localhost:8080/auth/twitch/callback'
   }
 }
