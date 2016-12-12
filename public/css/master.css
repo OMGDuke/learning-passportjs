@@ -2,3 +2,53 @@ body {
   padding-top: 80px;
   word-wrap:break-word;
 }
+
+.btn-twitch {
+  color: #ffffff;
+  background-color: #6441A4;
+  border-color: #130269;
+}
+
+.btn-twitch:hover,
+.btn-twitch:focus,
+.btn-twitch:active,
+.btn-twitch.active,
+.open .dropdown-toggle.btn-twitch {
+  color: #ffffff;
+  background-color: #3B2064;
+  border-color: #130269;
+}
+
+.btn-twitch:active,
+.btn-twitch.active,
+.open .dropdown-toggle.btn-twitch {
+  background-image: none;
+}
+
+.btn-twitch.disabled,
+.btn-twitch[disabled],
+fieldset[disabled] .btn-twitch,
+.btn-twitch.disabled:hover,
+.btn-twitch[disabled]:hover,
+fieldset[disabled] .btn-twitch:hover,
+.btn-twitch.disabled:focus,
+.btn-twitch[disabled]:focus,
+fieldset[disabled] .btn-twitch:focus,
+.btn-twitch.disabled:active,
+.btn-twitch[disabled]:active,
+fieldset[disabled] .btn-twitch:active,
+.btn-twitch.disabled.active,
+.btn-twitch[disabled].active,
+fieldset[disabled] .btn-twitch.active {
+  background-color: #6441A4;
+  border-color: #130269;
+}
+
+.btn-twitch .badge {
+  color: #6441A4;
+  background-color: #ffffff;
+}
+
+.text-twitch {
+  color: #6441A4;
+}
