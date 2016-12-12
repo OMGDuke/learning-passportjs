@@ -178,9 +178,7 @@ module.exports = function(passport) {
     callbackURL: configAuth.twitchAuth.callbackURL,
     scope: "user_read"
   }, function(accessToken, refreshToken, profile, done) {
-    console.log("ACCESS TOKEN: " + accessToken);
-    console.log("REFRESH TOKEN: " + refreshToken);
-    console.log("PROFILE: " + profile);
+    console.log("PROFILE: " + JSON.stringify(profile));
     process.nextTick(function() {
       User.findOne({
         'twitch.id': profile.id
@@ -192,9 +190,10 @@ module.exports = function(passport) {
         } else {
           var newUser = new User;
           newUser.twitch.id = profile.id;
-          newUser.twitch.token = token;
-          newUser.twitch.name = profile.displayName;
-          newUser.twitch.email = profile.emails[0].value;
+          newUser.twitch.accessToken = accessToken;
+          newUser.twitch.refreshToken = refreshToken;
+          newUser.twitch.username = profile.username;
+          newUser.twitch.email = profile.email;
 
           newUser.save(function(err) {
             if(err) {

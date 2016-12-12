@@ -23,6 +23,13 @@ var userSchema = mongoose.Schema({
     token: String,
     email: String,
     name: String
+  },
+  twitch: {
+    id: String,
+    accessToken: String,
+    refreshToken: String,
+    email: String,
+    username: String
   }
 });
 

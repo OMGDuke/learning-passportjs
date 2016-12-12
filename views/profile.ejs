@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Passport Auth</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/master.css">
   </head>
   <body>
@@ -62,6 +62,20 @@
               <strong>token</strong>: <%= user.google.token %></br>
               <strong>email</strong>: <%= user.google.email %></br>
               <strong>name</strong>: <%= user.google.name %>
+            </p>
+          </div>
+        </div>
+
+        <!-- TWITCH -->
+        <div class="col-sm-6">
+          <div class="well">
+            <h3 class="text-success"><span class="fa fa-twitch"></span> Twitch.tv</h3>
+            <p>
+              <strong>id</strong>: <%= user.twitch.id %></br>
+              <strong>access token</strong>: <%= user.twitch.accessToken %></br>
+              <strong>refresh token</strong>: <%= user.twitch.refreshToken %></br>
+              <strong>email</strong>: <%= user.twitch.email %></br>
+              <strong>username</strong>: <%= user.twitch.username %>
             </p>
           </div>
         </div>
