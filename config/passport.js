@@ -196,7 +196,6 @@ module.exports = function(passport) {
     callbackURL: configAuth.twitchAuth.callbackURL,
     scope: "user_read"
   }, function(accessToken, refreshToken, profile, done) {
-    console.log("PROFILE: " + JSON.stringify(profile));
     process.nextTick(function() {
       User.findOne({
         'twitch.id': profile.id
