@@ -76,7 +76,7 @@ module.exports = function(app, passport) {
     scope: 'email'
   }));
 
-  app.get('/connect/twitter/callback', passport.authenticate('twitter', {
+  app.get('/connect/twitter/callback', passport.authorize('twitter', {
     successRedirect: '/profile',
     failureRedirect: '/'
   }));
@@ -92,11 +92,11 @@ module.exports = function(app, passport) {
   }));
 
   // GOOGLE CONNECT
-  app.get('/connect/google', passport.authenticate('google', {
+  app.get('/connect/google', passport.authorize('google', {
     scope: ['profile', 'email']
   }));
 
-  app.get('/auth/google/callback', passport.authenticate('google', {
+  app.get('/connect/google/callback', passport.authorize('google', {
     successRedirect: '/profile',
     failureRedirect: '/'
   }));
@@ -105,6 +105,14 @@ module.exports = function(app, passport) {
   app.get('/auth/twitch', passport.authenticate('twitch'));
 
   app.get('/auth/twitch/callback', passport.authenticate('twitch', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
+
+  // TWITCH CONNECT
+  app.get('/connect/twitch', passport.authorize('twitch'));
+
+  app.get('/connect/twitch/callback', passport.authorize('twitch', {
     successRedirect: '/profile',
     failureRedirect: '/'
   }));
