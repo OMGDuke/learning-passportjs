@@ -105,7 +105,7 @@ module.exports = function(passport) {
               return done(null, newUser)
             });
           }
-        }
+        })
       } else {
         var user = req.user;
 
@@ -118,10 +118,8 @@ module.exports = function(passport) {
           if(err) {
             throw err;
           }
-
           return done(null, user);
-        })
-      });
+        }) ;
       }
     });
   }));
